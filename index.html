@@ -25,14 +25,35 @@
     <div>
         <p class="greeting-message"></p>
     </div>
-
+    <script src="http://chancejs.com/chance.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
-        let num1; // 1. Math.random
-        let num2; // 2. Math.random
+        let num1 = chance.integer({min: 1, max: 100}); // 1. Math.random
+        let num2 = chance.integer({min: 1, max: 100}); // 2. Math.random
 
         // 3. - 2 líneas de código usando adecuadamente querySelector
-
-        // 4. - addEventListener. NO hace falta un evento 'submit' aquí porque no estamos gestionando un <form>. Escuchar el evento 'click' es suficiente
+        $('#primary-number').text(num1);
+        $('#secondary-number').text(num2);
+       // 4. - addEventListener. NO hace falta un evento 'submit' aquí porque no estamos gestionando un <form>. Escuchar el evento 'click' es suficiente
+        $('#btn').on('click', () => {
+            let val1 = +$('#primary-number').text();
+            let val2 = +$('#secondary-number').text();
+ 
+            if ((val1 + val2) == $('#guess').val()) {
+                console.log('ok!');
+                $('.greeting-message').text('Congrats!');
+                $('.greeting-message').show();
+                $('.greeting-message').css('color', 'green')
+            } else  
+                {console.log('error!!!');
+                $('.greeting-message').text('Te has equivicado. Vuelve a intentarlo');
+                $('.greeting-message').show();
+                $('.greeting-message').css('color', 'red')}
+            }
+        );
+        
+            
+        
     </script>
 </body>
 
